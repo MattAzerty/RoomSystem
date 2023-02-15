@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "761472523177",
+    "firebase_url": "https://roomsystem-b44ba-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "roomsystem-b44ba",
+    "storage_bucket": "roomsystem-b44ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761472523177:android:acdbb8c52dc61256ff02b8",
+        "android_client_info": {
+          "package_name": "fr.melanoxy.roomsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761472523177-hu34mga13arh7je4csqdu45hjimkhvi6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.melanoxy.roomsystem",
+            "certificate_hash": "8bdc243bb2ddf04b2eb2a638cfa86417d8ed1f26"
+          }
+        },
+        {
+          "client_id": "761472523177-snas6tenbg3nf2ge0eirgin5mgsksk8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBN9IfgbFj2ztXtio3oyzxdxp6yudBYF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761472523177-snas6tenbg3nf2ge0eirgin5mgsksk8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
