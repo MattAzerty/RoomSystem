@@ -3,6 +3,7 @@ package fr.melanoxy.roomsystem.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.databinding.ActivityMainBinding
 import fr.melanoxy.roomsystem.ui.auth.AuthFragment
@@ -28,7 +29,12 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
 
-//TODO: Fragment navigation
+// Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+        viewModel.singleLiveEvent.observe(this) { event ->
+            when (event) {
+                is MainEvent.ShowSnackBarMessage -> Snackbar.make(binding.mainCl, event.message, Snackbar.LENGTH_SHORT).show()
+            }
+        }
 
     }
 }//END of MainActivity

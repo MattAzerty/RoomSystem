@@ -14,8 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoomSystem"
         tools:targetApi="31">
+        <!-- android:windowSoftInputMode="adjustResize" to show snackbar above keyboard (with coordinatorlayout) -->
         <activity
             android:name=".ui.main.MainActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

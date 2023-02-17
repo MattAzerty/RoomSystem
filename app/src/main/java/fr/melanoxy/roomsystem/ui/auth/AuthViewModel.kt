@@ -6,6 +6,7 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.melanoxy.roomsystem.R
+import fr.melanoxy.roomsystem.data.uiWidget.uiWidgetRepository
 import fr.melanoxy.roomsystem.data.user.UserRepository
 import fr.melanoxy.roomsystem.ui.utils.CoroutineDispatcherProvider
 import fr.melanoxy.roomsystem.ui.utils.SingleLiveEvent
@@ -20,6 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val userRepository: UserRepository,
+    private val uiWidgetRepository: uiWidgetRepository,
     private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
 
@@ -43,22 +45,6 @@ class AuthViewModel @Inject constructor(
         )
     }
 
-//Update button via this LiveData
-    /*val buttonAuthStateItemLiveData: LiveData<ButtonAuthStateItem> = liveData(coroutineDispatcherProvider.io) {
-        combine(
-            userRepository.emailExistOnFirebaseStateFlow,
-            emailMutableLiveData.asFlow(),
-            pswrdMutableLiveData.asFlow()
-        ) { emailExistOnFirebase, email, pswrd ->
-            emit(
-                ButtonAuthStateItem(
-                    isEnable = pswrd.length>5 && isEmailValid(email),
-                    type = if (emailExistOnFirebase) R.string.connect else R.string.create
-                )
-            )
-        }.collect()
-    }*/
-
 //GETTERS FOR FRAGMENT
     val buttonAuthStateItemLiveData: LiveData<ButtonAuthStateItem>
         get() = mediatorLiveData
@@ -71,8 +57,7 @@ class AuthViewModel @Inject constructor(
                 try {
                     userRepository.isEmailAlreadyExistInFirebase(email)
                 } catch (error: UserRepository.UserRepositoryError) {
-                    //_snackBar.value = error.message
-                    Log.d(TAG, "checkemail: $error")
+                    uiWidgetRepository.errorMessageSateFlow.value=error.message
                 } finally {
                     //_spinner.value = false
                 }
@@ -101,8 +86,7 @@ class AuthViewModel @Inject constructor(
                 withContext(coroutineDispatcherProvider.main) {
                 singleLiveEvent.value=SignEvent.NavigateToModuleFrag}
             } catch (error: UserRepository.UserRepositoryError) {
-                //_snackBar.value = error.message
-                Log.d(TAG, "signinError: $error")
+                uiWidgetRepository.errorMessageSateFlow.value=error.message
             } finally {
                 //_spinner.value = false
             }

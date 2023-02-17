@@ -15,10 +15,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserRepository @Inject constructor() {//END of userRepository
+class UserRepository @Inject constructor() {
 
     val emailExistOnFirebaseStateFlow = MutableStateFlow<Boolean?>(null)
-    val userStateFlow = MutableStateFlow<User?>(null)
 
 //CHECK IF USER AUTHENTICATED IN FIREBASE
     fun isUserAuthenticatedInFirebase(): Boolean {
