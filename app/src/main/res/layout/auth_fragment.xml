@@ -1,16 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_fragment_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:focusable="true"
+    android:clickable="true"
+    android:background="@color/gray"
+    android:gravity="top">
 
     <TextView
+        android:id="@+id/auth_fragment_tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FireBaseAuth"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/Login"
+        android:textSize="@dimen/logo_textSize" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- EditText field for the email -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/auth_fragment_tily_email"
+        style="@style/MyTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/auth_fragment_tv_login"
+        android:textColorHint="@color/text_input_box_stroke"
+        app:hintTextColor="#FFAB40"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/auth_fragment_tiet_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_opacity_60"
+            android:textStyle="bold"
+            android:ems="10"
+            android:hint="@string/email"
+            android:singleLine="true"
+            android:text="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- EditText field for the password -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/auth_fragment_tily_pswd"
+        style="@style/MyTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/auth_fragment_tily_email"
+        android:textColorHint="@color/text_input_box_stroke"
+        app:hintTextColor="#FFAB40"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/auth_fragment_tiet_pswd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_opacity_60"
+            android:textStyle="bold"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:hint="@string/password"
+            android:singleLine="true"
+            android:text="" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/auth_fragment_button_signin"
+        style="@style/Widget.MaterialComponents.Button"
+        android:theme="@style/MyMaterialButtonStyle"
+        android:backgroundTint="@color/mtrl_btn_bg_color_selector"
+        android:layout_width="wrap_content"
+        android:enabled="false"
+        android:layout_height="50dp"
+        android:layout_below="@+id/auth_fragment_tily_pswd"
+        android:layout_alignEnd="@+id/auth_fragment_tily_pswd"
+        android:textColor="#fff"
+        android:textSize="22sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/connect" />
+
+</RelativeLayout>
