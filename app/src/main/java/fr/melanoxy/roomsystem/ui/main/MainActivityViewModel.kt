@@ -2,7 +2,7 @@ package fr.melanoxy.roomsystem.ui.main
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import fr.melanoxy.roomsystem.data.uiWidget.uiWidgetRepository
+import fr.melanoxy.roomsystem.data.activityCrossFragment.SharingRepository
 import fr.melanoxy.roomsystem.data.user.UserRepository
 import fr.melanoxy.roomsystem.ui.utils.CoroutineDispatcherProvider
 import fr.melanoxy.roomsystem.ui.utils.SingleLiveEvent
@@ -13,14 +13,14 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    uiWidgetRepository: uiWidgetRepository,
+    sharingRepository: SharingRepository,
     private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {//END of MainActivityViewModel
 
-    val errorMessageFlow = uiWidgetRepository.errorMessageSateFlow
+    val errorMessageFlow = sharingRepository.errorMessageSateFlow
     val singleLiveEvent = SingleLiveEvent<MainEvent>()
 
-    init {
+    init {//TODO: do not collect flow here because we would collect the flow even when user put the application on background
         viewModelScope.launch(coroutineDispatcherProvider.io) {
             errorMessageFlow.collect { errorMessage ->
                 withContext(coroutineDispatcherProvider.main) {
@@ -31,7 +31,13 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-
+    // Can't use viewModelScope.launch{}, because we would collect the flow even when user put the application on background
+    /*val mainViewActionLiveData: LiveData<Event<MainViewAction>> =
+        currentMailIdRepository.currentMailIdChannel.asLiveDataEvent(Dispatchers.IO) {
+            if (!isTablet) {
+                emit(MainViewAction.NavigateToDetailActivity)
+            }
+        }*/
 
 
 //Check on Firebase if user is authenticated

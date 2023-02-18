@@ -1,18 +1,13 @@
 package fr.melanoxy.roomsystem.ui.auth
 
-import android.content.ContentValues.TAG
-import android.util.Log
-import androidx.annotation.MainThread
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.melanoxy.roomsystem.R
-import fr.melanoxy.roomsystem.data.uiWidget.uiWidgetRepository
+import fr.melanoxy.roomsystem.data.activityCrossFragment.SharingRepository
 import fr.melanoxy.roomsystem.data.user.UserRepository
 import fr.melanoxy.roomsystem.ui.utils.CoroutineDispatcherProvider
 import fr.melanoxy.roomsystem.ui.utils.SingleLiveEvent
 import fr.melanoxy.roomsystem.ui.utils.isEmailValid
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -21,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val uiWidgetRepository: uiWidgetRepository,
+    private val sharingRepository: SharingRepository,
     private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
 
@@ -57,7 +52,7 @@ class AuthViewModel @Inject constructor(
                 try {
                     userRepository.isEmailAlreadyExistInFirebase(email)
                 } catch (error: UserRepository.UserRepositoryError) {
-                    uiWidgetRepository.errorMessageSateFlow.value=error.message
+                    sharingRepository.errorMessageSateFlow.value=error.message
                 } finally {
                     //_spinner.value = false
                 }
@@ -86,7 +81,7 @@ class AuthViewModel @Inject constructor(
                 withContext(coroutineDispatcherProvider.main) {
                 singleLiveEvent.value=SignEvent.NavigateToModuleFrag}
             } catch (error: UserRepository.UserRepositoryError) {
-                uiWidgetRepository.errorMessageSateFlow.value=error.message
+                sharingRepository.errorMessageSateFlow.value=error.message
             } finally {
                 //_spinner.value = false
             }

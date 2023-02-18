@@ -2,6 +2,7 @@ package fr.melanoxy.roomsystem.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,12 +14,14 @@ import fr.melanoxy.roomsystem.ui.utils.viewBinding
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+
     private val binding by viewBinding { ActivityMainBinding.inflate(it) }
     private val viewModel by viewModels<MainActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
 
 //At start check if user is authenticated else show Login view
         if (savedInstanceState == null) {
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
 
-// Show a snackbar whenever the [ViewModel.snackbar] is updated a non-null value
+// Show a snackbar whenever the [ViewModel.singleLiveEvent] is updated
         viewModel.singleLiveEvent.observe(this) { event ->
             when (event) {
                 is MainEvent.ShowSnackBarMessage -> Snackbar.make(binding.mainCl, event.message, Snackbar.LENGTH_SHORT).show()
@@ -37,4 +40,15 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle home button click
+        if (item.itemId == android.R.id.home) {
+            // Handle the click event here
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }//END of MainActivity
