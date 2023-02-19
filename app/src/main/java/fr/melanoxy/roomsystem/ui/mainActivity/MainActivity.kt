@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.main
+package fr.melanoxy.roomsystem.ui.mainActivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.databinding.ActivityMainBinding
-import fr.melanoxy.roomsystem.ui.auth.AuthFragment
-import fr.melanoxy.roomsystem.ui.modules.ModulesFragment
+import fr.melanoxy.roomsystem.ui.authFragment.AuthFragment
+import fr.melanoxy.roomsystem.ui.modulesFragment.ModulesFragment
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
 @AndroidEntryPoint

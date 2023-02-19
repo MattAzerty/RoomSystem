@@ -1,22 +1,14 @@
-package fr.melanoxy.roomsystem.ui.auth
+package fr.melanoxy.roomsystem.ui.authFragment
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.view.doOnDetach
-import androidx.core.view.doOnNextLayout
-import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.R
 import fr.melanoxy.roomsystem.databinding.AuthFragmentBinding
-import fr.melanoxy.roomsystem.ui.modules.ModulesFragment
+import fr.melanoxy.roomsystem.ui.modulesFragment.ModulesFragment
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.main
+package fr.melanoxy.roomsystem.ui.mainActivity
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel

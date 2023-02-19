@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.auth
+package fr.melanoxy.roomsystem.ui.authFragment
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel

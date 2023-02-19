@@ -1,11 +1,10 @@
-package fr.melanoxy.roomsystem.ui.modules
+package fr.melanoxy.roomsystem.ui.modulesFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.melanoxy.roomsystem.data.activityCrossFragment.SharingRepository
-import fr.melanoxy.roomsystem.data.module.Module
 import fr.melanoxy.roomsystem.data.module.ModuleRepository
 import fr.melanoxy.roomsystem.data.user.UserRepository
 import kotlinx.coroutines.Dispatchers

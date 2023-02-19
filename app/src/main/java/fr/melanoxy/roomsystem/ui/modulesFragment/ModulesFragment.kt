@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.modules
+package fr.melanoxy.roomsystem.ui.modulesFragment
 
 import android.os.Bundle
 import android.view.Menu
@@ -69,7 +69,7 @@ class ModulesFragment : Fragment(R.layout.modules_fragment) {
         actionBar?.title = "Modules:"
         actionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.baseline_info_white_24dp)
+            setHomeAsUpIndicator(R.drawable.baseline_memory_white_24dp)
         }
     }
 

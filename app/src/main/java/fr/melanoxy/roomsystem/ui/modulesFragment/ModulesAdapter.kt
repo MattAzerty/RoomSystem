@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.modules
+package fr.melanoxy.roomsystem.ui.modulesFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.auth
+package fr.melanoxy.roomsystem.ui.authFragment
 
 sealed class SignEvent{
     object NavigateToModuleFrag : SignEvent()
