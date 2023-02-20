@@ -5,5 +5,6 @@ import java.io.Serializable
 data class Module (
     val moduleName: String,
     val moduleImageUrl: String,
-    val moduleId: Int
+    val moduleId: Int,
+    val moduleDescription: String
 ) : Serializable

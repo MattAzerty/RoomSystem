@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.modulesFragment
+package fr.melanoxy.roomsystem.ui.mainActivity.modulesFragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ModulesViewModel @Inject constructor(
-    userRepository: UserRepository,
     sharingRepository: SharingRepository,
     moduleRepository: ModuleRepository
 ) : ViewModel() {
@@ -26,10 +25,10 @@ class ModulesViewModel @Inject constructor(
                         moduleName = it.moduleName,
                         moduleImageUrl = it.moduleImageUrl,
                         onModuleClicked = {
-                            sharingRepository.setCurrentModuleId(it.moduleId)
+                            sharingRepository.moduleClickedSateFlow.value=it.moduleId
                         },
                     )
-                }
+                }.filter {it.moduleId==0 || it.moduleId==2 }
             )
         }
     }

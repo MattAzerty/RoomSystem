@@ -1,5 +1,6 @@
 package fr.melanoxy.roomsystem.ui.mainActivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,7 +9,8 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.databinding.ActivityMainBinding
 import fr.melanoxy.roomsystem.ui.authFragment.AuthFragment
-import fr.melanoxy.roomsystem.ui.modulesFragment.ModulesFragment
+import fr.melanoxy.roomsystem.ui.configurationActivity.ConfigurationActivity
+import fr.melanoxy.roomsystem.ui.mainActivity.modulesFragment.ModulesFragment
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
 @AndroidEntryPoint
@@ -32,10 +34,11 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
 
-// Show a snackbar whenever the [ViewModel.singleLiveEvent] is updated
+//Event(s) observer
         viewModel.singleLiveEvent.observe(this) { event ->
             when (event) {
                 is MainEvent.ShowSnackBarMessage -> Snackbar.make(binding.mainCl, event.message, Snackbar.LENGTH_SHORT).show()
+                MainEvent.LaunchConfigurationActivity -> startActivity(Intent(this, ConfigurationActivity::class.java))
             }
         }
 

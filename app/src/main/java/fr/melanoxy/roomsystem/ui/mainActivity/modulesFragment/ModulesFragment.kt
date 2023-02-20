@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.modulesFragment
+package fr.melanoxy.roomsystem.ui.mainActivity.modulesFragment
 
 import android.os.Bundle
 import android.view.Menu
@@ -25,7 +25,19 @@ class ModulesFragment : Fragment(R.layout.modules_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-// The usage of an interface lets you inject your own implementation
+
+
+        inflateActionBar()
+        changeActionBarTitle()
+        bindRecyclerView()
+
+
+
+    }
+
+    private fun inflateActionBar() {
+
+        // The usage of an interface lets you inject your own implementation
         val menuHost: MenuHost = requireActivity()
 
         // Add menu items without using the Fragment Menu APIs
@@ -43,13 +55,6 @@ class ModulesFragment : Fragment(R.layout.modules_fragment) {
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
-
-
-        changeActionBarTitle()
-        bindRecyclerView()
-
-
-
     }
 
     private fun bindRecyclerView() {

@@ -2,13 +2,14 @@ package fr.melanoxy.roomsystem.ui.authFragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.R
 import fr.melanoxy.roomsystem.databinding.AuthFragmentBinding
-import fr.melanoxy.roomsystem.ui.modulesFragment.ModulesFragment
+import fr.melanoxy.roomsystem.ui.mainActivity.modulesFragment.ModulesFragment
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
 @AndroidEntryPoint
@@ -19,6 +20,9 @@ class AuthFragment : Fragment(R.layout.auth_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.hide()
 
         //get email inputs after a setOnFocusChangedToNotFocused to check if user exist on Firebase
         binding.authFragmentTietEmail.setOnFocusChangeListener { _, hasFocus ->

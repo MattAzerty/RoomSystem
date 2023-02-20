@@ -1,5 +1,6 @@
-package fr.melanoxy.roomsystem.ui.modulesFragment
+package fr.melanoxy.roomsystem.ui.mainActivity.modulesFragment
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.melanoxy.roomsystem.databinding.ModuleItemBinding
 
-class ModulesAdapter: ListAdapter<ModuleViewStateItem, ModulesAdapter.ViewHolder>(ModulesDiffCallback) {
+class ModulesAdapter: ListAdapter<ModuleViewStateItem, ModulesAdapter.ViewHolder>(
+    ModulesDiffCallback
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
         ModuleItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,10 +23,11 @@ class ModulesAdapter: ListAdapter<ModuleViewStateItem, ModulesAdapter.ViewHolder
 
     class ViewHolder(private val binding: ModuleItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ModuleViewStateItem) {
-            Glide.with(binding.moduleItemImage)
+            /*Glide.with(binding.moduleItemImage)
                 .load(item.moduleImageUrl)
                 .fitCenter()
-                .into(binding.moduleItemImage)
+                .into(binding.moduleItemImage)*/
+            if(item.moduleId==0) binding.moduleItemImage.setBackgroundColor(Color.rgb(0, 255, 204));
             binding.moduleItemText.text = item.moduleName
             binding.moduleItemImage.setOnClickListener {
                 item.onModuleClicked.invoke()

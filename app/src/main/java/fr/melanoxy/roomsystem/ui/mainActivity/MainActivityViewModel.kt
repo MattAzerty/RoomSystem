@@ -17,10 +17,11 @@ class MainActivityViewModel @Inject constructor(
     private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {//END of MainActivityViewModel
 
-    val errorMessageFlow = sharingRepository.errorMessageSateFlow
+    private val errorMessageFlow = sharingRepository.errorMessageSateFlow
+    private val moduleClickedFlow = sharingRepository.moduleClickedSateFlow
     val singleLiveEvent = SingleLiveEvent<MainEvent>()
 
-    init {//TODO: do not collect flow here because we would collect the flow even when user put the application on background
+    init {//TODO: Use Mediator?
         viewModelScope.launch(coroutineDispatcherProvider.io) {
             errorMessageFlow.collect { errorMessage ->
                 withContext(coroutineDispatcherProvider.main) {
@@ -29,16 +30,15 @@ class MainActivityViewModel @Inject constructor(
                 errorMessageFlow.value=null
             }
         }
-    }
-
-    // Can't use viewModelScope.launch{}, because we would collect the flow even when user put the application on background
-    /*val mainViewActionLiveData: LiveData<Event<MainViewAction>> =
-        currentMailIdRepository.currentMailIdChannel.asLiveDataEvent(Dispatchers.IO) {
-            if (!isTablet) {
-                emit(MainViewAction.NavigateToDetailActivity)
+        viewModelScope.launch(coroutineDispatcherProvider.io) {
+            moduleClickedFlow.collect { int ->
+                withContext(coroutineDispatcherProvider.main) {
+                    if(int==0)
+                        singleLiveEvent.value = MainEvent.LaunchConfigurationActivity }
+                moduleClickedFlow.value=null
             }
-        }*/
-
+        }
+        }
 
 //Check on Firebase if user is authenticated
     fun isUserAuthenticated():Boolean {return userRepository.isUserAuthenticatedInFirebase()}

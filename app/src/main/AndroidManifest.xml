@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="fr.melanoxy.roomsystem"
-    >
-    <!-- android:name for HILT MainApplication entry point -->
+    package="fr.melanoxy.roomsystem">
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -14,18 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoomSystem"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.configurationActivity.ConfigurationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_configuration"
+            android:theme="@style/Theme.RoomSystem.NoActionBar" />
         <!-- android:windowSoftInputMode="adjustResize" to show snackbar above keyboard (with coordinatorlayout) -->
         <activity
             android:name=".ui.mainActivity.MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

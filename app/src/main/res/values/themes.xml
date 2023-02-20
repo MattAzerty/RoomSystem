@@ -20,4 +20,13 @@
         <item name="boxStrokeWidth">4dp</item>
         <item name="boxStrokeWidthFocused">4dp</item>
     </style>
+
+    <style name="Theme.RoomSystem.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.RoomSystem.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.RoomSystem.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
