@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App -->
+    <color name="colorPrimary">#FF3700B3</color>
+    <color name="colorPrimaryDark">#A1A1A1</color>
+    <color name="colorAccent">#FFA000</color>
+
+    <!-- common -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,15 +14,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#FF3700B3</color>
-    <color name="colorPrimaryDark">#0288D1</color>
-    <color name="colorAccent">#FFA000</color>
-
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_500">#9E9E9E</color>
 
-    <!-- common -->
+
     <color name="common_white_1">#ffffff</color>
     <color name="common_white_2">#feffff</color>
     <color name="common_white_30">#4dffffff</color>
@@ -102,4 +104,5 @@
     <color name="nav_header_background">#fdfdfe</color>
     <color name="video_thumbnail_placeholder_color">#d3d3d3</color>
     <color name="video_des_background_color">#cec8c8</color>
+
 </resources>

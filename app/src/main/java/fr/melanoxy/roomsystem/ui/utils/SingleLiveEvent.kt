@@ -5,7 +5,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import java.util.concurrent.atomic.AtomicBoolean
-
+/*//SingleLiveEvent
+Multiple observers can register, only the first one receive the event
+ */
 
 /**
  * A lifecycle-aware observable that sends only new updates after subscription, used for events like navigation and Snackbar messages.

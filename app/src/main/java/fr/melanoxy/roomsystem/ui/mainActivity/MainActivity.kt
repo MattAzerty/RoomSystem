@@ -35,13 +35,23 @@ class MainActivity : AppCompatActivity() {
         }
 
 //Event(s) observer
-        viewModel.singleLiveEvent.observe(this) { event ->
+        viewModel.mainEventLiveData.observe(this) { event ->
             when (event) {
                 is MainEvent.ShowSnackBarMessage -> Snackbar.make(binding.mainCl, event.message, Snackbar.LENGTH_SHORT).show()
-                MainEvent.LaunchConfigurationActivity -> startActivity(Intent(this, ConfigurationActivity::class.java))
+                is MainEvent.LaunchActivity -> startMyActivity(event.moduleId)
             }
         }
 
+    }
+
+    private fun startMyActivity(moduleId: Int) {
+        lateinit var i: Intent
+        when(moduleId){
+        0 -> i = Intent(this, ConfigurationActivity::class.java)
+        }
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(i)
+        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

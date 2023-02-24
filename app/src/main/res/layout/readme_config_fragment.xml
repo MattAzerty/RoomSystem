@@ -1,0 +1,65 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/title_textSize">
+
+    <TextView
+        android:id="@+id/readme_config_requirement_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:enabled="false"
+        android:textSize="@dimen/title_textSize"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="@string/requirement"/>
+
+    <TextView
+        android:id="@+id/readme_config_requirement_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/textView_margin"
+        android:textSize="@dimen/body_textSize"
+        android:textColor="@color/black"
+        android:padding="@dimen/fab_margin"
+        android:background="@drawable/shape_text_inner_depth"
+        android:enabled="false"/>
+
+    <TextView
+        android:id="@+id/readme_config_steps_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textStyle="bold"
+        android:enabled="false"
+        android:textSize="@dimen/title_textSize"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:textColor="@color/black"
+        android:text="@string/steps"/>
+
+    <TextView
+        android:id="@+id/readme_config_steps_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/textView_margin"
+        android:textSize="@dimen/body_textSize"
+        android:textColor="@color/black"
+        android:padding="@dimen/fab_margin"
+        android:background="@drawable/shape_text_inner_depth"
+        android:enabled="false"/>
+
+    <Button
+        android:id="@+id/readme_config_next_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/button_bottom_margin"
+        android:text="@string/next"/>
+
+</LinearLayout>

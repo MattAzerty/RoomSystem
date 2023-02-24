@@ -17,4 +17,8 @@
 
     <dimen name="button_horizontal_margin">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="depth">2dp</dimen>
+    <dimen name="button_bottom_margin">20dp</dimen>
+    <dimen name="textView_margin">16dp</dimen>
+    <dimen name="height_min">48dp</dimen>
 </resources>

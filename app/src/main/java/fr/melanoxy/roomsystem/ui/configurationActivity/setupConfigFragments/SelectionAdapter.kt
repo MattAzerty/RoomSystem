@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.configurationActivity.configurationFragment
+package fr.melanoxy.roomsystem.ui.configurationActivity.setupConfigFragments
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

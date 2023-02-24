@@ -10,16 +10,16 @@ import javax.inject.Singleton
 @Singleton
 class SharingRepository @Inject constructor() {
 
-    /*private val currentModuleIdMutableSharedFlow = MutableStateFlow<Int?>(null)
+    private val currentModuleIdMutableSharedFlow = MutableStateFlow<Int?>(null)
     val currentModuleIdChannel = Channel<Int>()
     val currentModuleIdFlow: StateFlow<Int?> = currentModuleIdMutableSharedFlow.asStateFlow()
 
     fun setCurrentModuleId(currentId: Int) {
         currentModuleIdMutableSharedFlow.value = currentId
         currentModuleIdChannel.trySend(currentId)
-    }*/
+    }
 
-    val moduleClickedSateFlow = MutableStateFlow<Int?>(null)
+
     val errorMessageSateFlow = MutableStateFlow<String?>(null)
 
 }//END of uiWidgetRepository

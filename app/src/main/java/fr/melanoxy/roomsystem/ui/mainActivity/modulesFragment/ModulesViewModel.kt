@@ -25,7 +25,7 @@ class ModulesViewModel @Inject constructor(
                         moduleName = it.moduleName,
                         moduleImageUrl = it.moduleImageUrl,
                         onModuleClicked = {
-                            sharingRepository.moduleClickedSateFlow.value=it.moduleId
+                            sharingRepository.setCurrentModuleId(it.moduleId)
                         },
                     )
                 }.filter {it.moduleId==0 || it.moduleId==2 }

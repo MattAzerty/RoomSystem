@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.databinding.ActivityConfigurationBinding
-import fr.melanoxy.roomsystem.ui.configurationActivity.configurationFragment.SelectionConfigFragment
+import fr.melanoxy.roomsystem.ui.configurationActivity.setupConfigFragments.SelectionConfigFragment
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
 @AndroidEntryPoint
@@ -16,8 +16,6 @@ class ConfigurationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
-
-        //setSupportActionBar(binding.toolbar)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()

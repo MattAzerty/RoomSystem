@@ -21,8 +21,8 @@ class AuthFragment : Fragment(R.layout.auth_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val actionBar = (activity as AppCompatActivity).supportActionBar
-        actionBar?.hide()
+        /*val actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.hide()*/
 
         //get email inputs after a setOnFocusChangedToNotFocused to check if user exist on Firebase
         binding.authFragmentTietEmail.setOnFocusChangeListener { _, hasFocus ->
@@ -53,6 +53,7 @@ class AuthFragment : Fragment(R.layout.auth_fragment) {
             }
         }
     }
+
 
     private fun switchFragment() {
         val transaction = parentFragmentManager.beginTransaction()

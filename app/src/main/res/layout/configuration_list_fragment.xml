@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/title_textSize">
+<TextView
+    android:id="@+id/readme_config_requirement_title_tv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:layout_marginTop="@dimen/fab_margin"
+    android:layout_marginBottom="@dimen/fab_margin"
+    android:enabled="false"
+    android:textColor="@color/black"
+    android:textSize="@dimen/title_textSize"
+    android:textStyle="bold"
+    android:text="@string/configuration_list"/>
+
 <androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,3 +27,4 @@
     android:layout_height="match_parent"
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     tools:listitem="@layout/configuration_item" />
+</LinearLayout>

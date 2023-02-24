@@ -14,24 +14,28 @@ class ModuleRepository @Inject constructor() {
             moduleId = 1,
             moduleImageUrl = "",
             moduleName = "DHT11",
-            moduleDescription = "Temperature and Humidity acquisition"
+            moduleDescription = "Temperature and Humidity acquisition",
+            moduleRequirement = "- BLUETOOTH\n\n- INTERNET",
+            moduleSteps = "1. Enter the Number for your Wi-Fi\n\n2. Provide the Wi-Fi password"
         ),
         Module(
             moduleId = 2,
             moduleImageUrl = "",
             moduleName = "PC",
-            moduleDescription = "Configure your PC"
+            moduleDescription = "Configure your PC",
+            moduleSteps = "tbd",
+            moduleRequirement = "tbd"
         ),
         Module(
             moduleId = 0,
             moduleImageUrl = "",
             moduleName = "ADD",
-            moduleDescription = "Click here to add a module"
+            moduleDescription = "Click here to add a module",
+            moduleSteps = "NA",
+            moduleRequirement = "NA"
         )
     )
 
-    private val modulesMutableStateFlow: MutableStateFlow<List<Module>> = MutableStateFlow(modulesList)
-
-    val modulesStateFlow: StateFlow<List<Module>> = modulesMutableStateFlow.asStateFlow()
+    val modulesStateFlow: StateFlow<List<Module>> = MutableStateFlow(modulesList)
 
 }//END of ModuleRepository

@@ -6,5 +6,7 @@ data class Module (
     val moduleName: String,
     val moduleImageUrl: String,
     val moduleId: Int,
-    val moduleDescription: String
+    val moduleDescription: String,
+    val moduleRequirement: String,
+    val moduleSteps: String
 ) : Serializable

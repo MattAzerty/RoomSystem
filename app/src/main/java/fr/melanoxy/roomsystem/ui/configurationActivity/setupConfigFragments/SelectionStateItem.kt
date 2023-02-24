@@ -1,4 +1,4 @@
-package fr.melanoxy.roomsystem.ui.configurationActivity.configurationFragment
+package fr.melanoxy.roomsystem.ui.configurationActivity.setupConfigFragments
 
 data class SelectionStateItem (
     val selectionId: Int,

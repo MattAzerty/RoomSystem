@@ -3,6 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.melanoxy.roomsystem">
 
+    <!--BLUETOOTH PERMISSION NEEDED-->
+    <!-- Request legacy Bluetooth permissions on older devices. -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Needed only if your app looks for Bluetooth devices.-->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <!-- Needed only if your app communicates with already-paired Bluetooth devices. -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -16,6 +29,7 @@
         <activity
             android:name=".ui.configurationActivity.ConfigurationActivity"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:label="@string/title_activity_configuration"
             android:theme="@style/Theme.RoomSystem.NoActionBar" />
         <!-- android:windowSoftInputMode="adjustResize" to show snackbar above keyboard (with coordinatorlayout) -->
