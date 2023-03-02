@@ -1,24 +1,29 @@
 package fr.melanoxy.roomsystem.data.user
 
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import fr.melanoxy.roomsystem.data.FirebaseHelper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserRepository @Inject constructor() {
+class UserRepository @Inject constructor(
+    private val firebaseHelper: FirebaseHelper
+) {//END of userRepository
 
-    private val USER_COLLECTION = "users"
-    private val db = FirebaseFirestore.getInstance()
-    private val userCollectionReference = db.collection(USER_COLLECTION)
+    //private val USER_COLLECTION = "users"
+    //private val db = FirebaseFirestore.getInstance()
+    //private val userCollectionReference = db.collection(USER_COLLECTION)
+    //val firebaseUser = Firebase.auth.currentUser//Current user logged
     val emailExistOnFirebaseStateFlow = MutableStateFlow<Boolean?>(null)
 
 //CHECK IF USER AUTHENTICATED IN FIREBASE
     fun isUserAuthenticatedInFirebase(): Boolean {
-            return Firebase.auth.currentUser!=null
+            return firebaseHelper.getCurrentUser()!=null
     }
 
 //CHECK IF EMAIL ALREADY EXIST ON FIRESTORE
@@ -26,7 +31,7 @@ class UserRepository @Inject constructor() {
         try {
             // Make firebase request using a blocking call with Coroutine help
                 emailExistOnFirebaseStateFlow.emit(
-                    Firebase.auth.fetchSignInMethodsForEmail(email).await().signInMethods!!.isNotEmpty())
+                firebaseHelper.auth.fetchSignInMethodsForEmail(email).await().signInMethods!!.isNotEmpty())
         } catch (cause: Throwable) {
             // If anything throws an exception, inform the caller
             throw UserRepositoryError("Unable to check if email exist", cause)
@@ -36,10 +41,13 @@ class UserRepository @Inject constructor() {
 //SIGN UP/IN (NEW) USER
     suspend fun connectUserOnFirebase(email:String, pswrd:String, isEmailExist:Boolean) {
     try {
-        if(isEmailExist) Firebase.auth.signInWithEmailAndPassword(email, pswrd).await() else {
+        if(isEmailExist){
+            firebaseHelper.auth.signInWithEmailAndPassword(email, pswrd).await()
+            checkIfUserDocumentExist()
+        } else {
             //new user
-         Firebase.auth.createUserWithEmailAndPassword(email, pswrd).await()
-         createUserOnFirestore()
+            firebaseHelper.auth.createUserWithEmailAndPassword(email, pswrd).await()
+            checkIfUserDocumentExist()
         }
     } catch (cause: Throwable) {
         // If anything throws an exception, inform the caller
@@ -47,14 +55,20 @@ class UserRepository @Inject constructor() {
     }
 }
 
+    private fun checkIfUserDocumentExist() {
+        createUserOnFirestore()
+        //TODO("Not yet implemented")
+    }
+
     private fun createUserOnFirestore() {
-        val firebaseUser = Firebase.auth.currentUser//Current user logged
+
         val modulesList: List<Int> = ArrayList()
-        if (firebaseUser != null) {
+        (modulesList as ArrayList<Int>).add(0)
+        if (firebaseHelper.getCurrentUser() != null) {
             storeUserOnFirestore(
                 User(
-                    uid = firebaseUser.uid,
-                    email = firebaseUser.email.toString(),
+                    uid = firebaseHelper.getCurrentUser()!!.uid,
+                    email = firebaseHelper.getCurrentUser()!!.email.toString(),
                     modules = modulesList
                 )
             )
@@ -62,11 +76,16 @@ class UserRepository @Inject constructor() {
     }
 
     private fun storeUserOnFirestore(user:User) {
-        userCollectionReference.document(user.uid).set(user)
+        firebaseHelper.getUserDocumentReferenceOnFirestore()?.set(user)
+
+    }
+
+    fun getUserId(): String {
+        return firebaseHelper.getCurrentUser()!!.uid
     }
 
 
     //EXCEPTION
     class UserRepositoryError(message: String, cause: Throwable?) : Throwable(message, cause)
 
-}//END of userRepository
+}

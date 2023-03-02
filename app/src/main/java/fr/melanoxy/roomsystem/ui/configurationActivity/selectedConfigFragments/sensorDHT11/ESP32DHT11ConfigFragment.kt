@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ScrollView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,7 +14,9 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.R
 import fr.melanoxy.roomsystem.databinding.Esp32Dht11FragmentBinding
+import fr.melanoxy.roomsystem.ui.configurationActivity.ConfigurationActivity
 import fr.melanoxy.roomsystem.ui.configurationActivity.ConfigurationEvent
+import fr.melanoxy.roomsystem.ui.mainActivity.MainActivity
 import fr.melanoxy.roomsystem.ui.utils.PERMISSIONS
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
@@ -49,17 +52,28 @@ class ESP32DHT11ConfigFragment : Fragment(R.layout.esp32_dht11_fragment) {
             when (event) {
                 ConfigurationEvent.RequestPermissions -> requestMultiplePermissions()
                 ConfigurationEvent.EnableBluetooth -> enableBluetooth()
+                ConfigurationEvent.ResetTerminal -> binding.esp32Dht11FragmentTxtRead.text=getString(R.string.connection_error)
+                ConfigurationEvent.EndOfBTCom -> closeConfigActivity()
             }
         }
 
         viewModel.dataReceivedLiveData.observe(viewLifecycleOwner) {
             binding.esp32Dht11FragmentTxtRead.append(it)
+            binding.esp32Dht11FragmentSvReadData.post{binding.esp32Dht11FragmentSvReadData.fullScroll(ScrollView.FOCUS_DOWN)}
         }
 
         binding.esp32Dht11FragmentSendBtn.setOnClickListener {
             viewModel.onSendDataClicked(binding.esp32Dht11FragmentSendText.text.toString().trim())
+            binding.esp32Dht11FragmentSendText.text.clear()
         }
 
+    }
+
+    private fun closeConfigActivity() {
+    val i = Intent(activity, MainActivity::class.java)
+    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+    activity?.startActivity(i)
+    activity?.finish()
     }
 
     private fun enableBluetooth() {

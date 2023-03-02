@@ -22,4 +22,5 @@
     <string name="bt_terminal">Terminal BT:</string>
     <string name="send">SEND</string>
     <string name="answer_here">Answer here...</string>
+    <string name="connection_error">Connection error...</string>
 </resources>

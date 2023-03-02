@@ -25,6 +25,7 @@ import javax.inject.Singleton
 
 //https://developer.android.com/guide/topics/connectivity/bluetooth
 //..Classic Bluetooth
+@SuppressLint("MissingPermission")
 @Singleton
 class BluetoothService @Inject constructor(
     private val context: Context
@@ -56,7 +57,7 @@ private var socket: BluetoothSocket? = null
     }
 
 
-    @SuppressLint("MissingPermission")
+
     suspend fun scanDevice(deviceNameToScan: String) {
         //deviceFound = false
         putTxt.emit( "Looking for paired devices...\n")
@@ -72,7 +73,6 @@ private var socket: BluetoothSocket? = null
     }
 
     @OptIn(ExperimentalUnsignedTypes::class)
-    @SuppressLint("MissingPermission")
     fun registerBluetoothReceiver(){
 
         //Registering Action to stateFilter
@@ -90,7 +90,6 @@ private var socket: BluetoothSocket? = null
         // Create a BroadcastReceiver for ACTION
         val receiver = object : BroadcastReceiver() {
 
-            @SuppressLint("MissingPermission")
             override fun onReceive(context: Context, intent: Intent) {
                 when(intent.action) {
                     BluetoothDevice.ACTION_FOUND -> {
@@ -118,6 +117,7 @@ private var socket: BluetoothSocket? = null
                     }
                     BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
                         isConnectedMutableStateFlow.value = false
+                        putTxt.tryEmit("Disconnected.\n")
                     }
                 }
             }
@@ -136,9 +136,9 @@ private var socket: BluetoothSocket? = null
             val buffer = ByteArray(1024)
             var bytesRead: Int
             while (true) {
-                withContext(Dispatchers.IO) {
+                //withContext(Dispatchers.IO) {
                     bytesRead = socket?.inputStream?.read(buffer) ?:-1
-                }
+                //}
                 val data = buffer.copyOf(bytesRead)
                 val s = String(data)
                 putTxt.emit(s)
@@ -154,7 +154,6 @@ private var socket: BluetoothSocket? = null
         }
     }
 
-    @SuppressLint("MissingPermission")
     @ExperimentalUnsignedTypes
     suspend fun connectToTargetedDevice(targetDevice: BluetoothDevice?) {
         //phone connect as a client for the remote device that is accepting connections on an open server socket
@@ -167,7 +166,6 @@ private var socket: BluetoothSocket? = null
         else putTxt.emit(result.errorMessage!!)
         }
 
-    @SuppressLint("MissingPermission")
     private suspend fun connectDeviceTroughSocket(mSocket: BluetoothSocket?): SocketResponse {
 
         putTxt.emit("Connecting to socket...\n")
