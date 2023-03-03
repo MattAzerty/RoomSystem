@@ -26,12 +26,9 @@ class ModulesFragment : Fragment(R.layout.modules_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         inflateActionBar()
         changeActionBarTitle()
         bindRecyclerView()
-
-
 
     }
 
@@ -58,7 +55,6 @@ class ModulesFragment : Fragment(R.layout.modules_fragment) {
     }
 
     private fun bindRecyclerView() {
-//TODO use in repo  ComparablePair in order to put ADD at end but others in numeric order
         val adapter = ModulesAdapter()
         binding.moduleFragmentRv.adapter = adapter
         binding.moduleFragmentRv.layoutManager = GridLayoutManager(requireContext(), 2)

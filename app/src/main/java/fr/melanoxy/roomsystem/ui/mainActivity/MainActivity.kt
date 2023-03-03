@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import fr.melanoxy.roomsystem.databinding.ActivityMainBinding
 import fr.melanoxy.roomsystem.ui.authFragment.AuthFragment
 import fr.melanoxy.roomsystem.ui.configurationActivity.ConfigurationActivity
+import fr.melanoxy.roomsystem.ui.dht11SensorModActivity.DHT11SensorActivity
 import fr.melanoxy.roomsystem.ui.mainActivity.modulesFragment.ModulesFragment
 import fr.melanoxy.roomsystem.ui.utils.viewBinding
 
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var i: Intent
         when(moduleId){
         0 -> i = Intent(this, ConfigurationActivity::class.java)
+        1 -> i = Intent(this, DHT11SensorActivity::class.java)
         }
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(i)

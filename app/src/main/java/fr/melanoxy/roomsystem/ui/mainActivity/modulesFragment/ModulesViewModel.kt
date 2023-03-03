@@ -17,18 +17,18 @@ class ModulesViewModel @Inject constructor(
 ) : ViewModel() {
 
     val modulesLiveData: LiveData<List<ModuleViewStateItem>> = liveData(Dispatchers.IO) {
-        moduleRepository.modulesStateFlow.collect { modules ->
+        moduleRepository.getUserModules().collect { modulesId ->
             emit(
-                modules.map {
+                modulesId.map {
                     ModuleViewStateItem(
-                        moduleId = it.moduleId,
-                        moduleName = it.moduleName,
-                        moduleImageUrl = it.moduleImageUrl,
+                        moduleId = it,
+                        moduleName = moduleRepository.modulesList[it].moduleName,
+                        moduleImageUrl = moduleRepository.modulesList[it].moduleImageUrl,
                         onModuleClicked = {
-                            sharingRepository.setCurrentModuleId(it.moduleId)
+                            sharingRepository.setCurrentModuleId(it)
                         },
                     )
-                }.filter {it.moduleId==0 || it.moduleId==2 }
+                }.asReversed()//.filter {it.moduleId==0 || it.moduleId==2 }
             )
         }
     }
