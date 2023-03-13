@@ -14,7 +14,6 @@ class DHT11MvViewModel @Inject constructor(
     val realTimeTemperatureLiveData = moduleRepository.getRealTimeTemperatureFlow().asLiveData()
 
     fun setIsUserConnected(isUserConnected: Boolean) {
-        if(isUserConnected)
         moduleRepository.setOnRTDBIsUserConnected(isUserConnected)
     }
 

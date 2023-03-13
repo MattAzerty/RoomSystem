@@ -95,9 +95,13 @@ class ModuleRepository @Inject constructor(
         // Define a listener to handle changes in the value
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.value as? Double // Get the value from the snapshot
+                val value = snapshot.value.toString()// Get the value from the snapshot
+                val doubleValue = when {
+                value.contains(".") -> value.toDoubleOrNull()
+                else -> value.toIntOrNull()?.toDouble()
+                }
                 // Offer the value to the flow
-                trySend(value ?: 0.0)
+                trySend(doubleValue ?: 0.0)
             }
 
             override fun onCancelled(error: DatabaseError) {

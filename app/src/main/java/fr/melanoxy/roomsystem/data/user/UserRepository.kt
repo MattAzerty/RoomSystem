@@ -55,10 +55,12 @@ class UserRepository @Inject constructor(
     }
 }
 
-    private fun checkIfUserDocumentExist() {
-        createUserOnFirestore()
-        //TODO("Not yet implemented")
-    }
+    private suspend fun checkIfUserDocumentExist() {
+        firebaseHelper.getUserDocumentReferenceOnFirestore()?.get()?.await()?.let { userDocument ->
+            if (!userDocument.exists()) {
+                createUserOnFirestore()
+            }
+    }}
 
     private fun createUserOnFirestore() {
 

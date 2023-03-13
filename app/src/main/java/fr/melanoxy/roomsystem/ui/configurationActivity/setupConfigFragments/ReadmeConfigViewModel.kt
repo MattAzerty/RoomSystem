@@ -19,7 +19,7 @@ class ReadmeConfigViewModel @Inject constructor(
     val singleLiveSelectionConfigEvent = SingleLiveEvent<SelectionConfigEvent>()
 
     fun getReadmeViewState(): Module {
-        return moduleRepository.modulesList[moduleId!!-1]
+        return moduleRepository.modulesList[moduleId!!]
     }
 
     fun onNextButtonClicked() {
